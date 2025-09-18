@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GfTechHub Pop-Up</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Pop-up container */
+    .popup {
+      background: #ffffff;
+      border-radius: 15px;
+      padding: 30px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      transform: scale(0.7);
+      opacity: 0;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    /* Animate pop-up */
+    .overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .popup.active {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    /* GfTechHub branding */
+    .popup h2 {
+      color: #1e293b;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .popup p {
+      color: #475569;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    /* Close button */
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #f43f5e;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s ease;
+    }
+
+    .close-btn:hover {
+      background: #e11d48;
+    }
+
+    /* Button to trigger pop-up */
+    .open-btn {
+      background: #2563eb;
+      color: white;
+      padding: 12px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .open-btn:hover {
+      background: #1d4ed8;
+    }
+
+    /* Branding glow */
+    .glow {
+      animation: glow 1.5s infinite alternate;
+    }
+
+    @keyframes glow {
+      0% { text-shadow: 0 0 5px #2563eb, 0 0 10px #2563eb; }
+      100% { text-shadow: 0 0 15px #2563eb, 0 0 30px #2563eb; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Button to open pop-up -->
+  <button class="open-btn">Show GfTechHub Pop-Up</button>
+
+  <!-- Overlay and pop-up -->
+  <div class="overlay" id="overlay">
+    <div class="popup" id="popup">
+      <button class="close-btn" id="closeBtn">&times;</button>
+      <h2 class="glow">GfTechHub</h2>
+      <p>Welcome to GfTechHub! 🚀<br>
+      Your ultimate tech solutions partner.</p>
+      <button class="open-btn">Get Started</button>
+    </div>
+  </div>
+
+  <script>
+    const openBtn = document.querySelector('.open-btn');
+    const closeBtn = document.getElementById('closeBtn');
+    const overlay = document.getElementById('overlay');
+    const popup = document.getElementById('popup');
+
+    // Open pop-up
+    openBtn.addEventListener('click', () => {
+      overlay.classList.add('active');
+      popup.classList.add('active');
+    });
+
+    // Close pop-up
+    closeBtn.addEventListener('click', () => {
+      overlay.classList.remove('active');
+      popup.classList.remove('active');
+    });
+
+    // Close pop-up when clicking outside
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.classList.remove('active');
+        popup.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
